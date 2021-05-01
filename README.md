@@ -16,7 +16,7 @@
 
 ## Summary
 
-Cloud Mind is a frontend for MeaningCloud and was built using that I built to practice front end development and Webpack as part of my udacity nanodegree.
+Cloud Mind is a frontend for MeaningCloud and was built using that I built to practice front end development and Webpack as part of my **Advanced Front End Nanodegree from Udacity**.
 
 It uses a NodeJs backend server to connect and resolve MeaningCloudAPI to retrieve content sentiment (Agreement, Subjectivity, Confidence, Irony).
 
