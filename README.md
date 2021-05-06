@@ -51,9 +51,9 @@ Axios was used to handle web requests in the backend.
 6. Implemented unit testing for the javascript functions using Jester.
 
 ## Unit Testing
-Two test files that include three tests are included in the _test_ folder.
+Two test files that include three tests are included in the _test_ folder.  
 To Run the tests 
-```npmrc
+```Batchfile
 npm run test
 ```
 
