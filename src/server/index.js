@@ -13,18 +13,6 @@ const mockAPIResponse = require("./mockAPI.js");
 /*        STATIC FOLDER        */
 app.use(express.static("dist"));
 
-/*        BODY PARSER        */
-const bodyParser = require("body-parser");
-// Allow parsing of nested objects
-app.use(
-  bodyParser.urlencoded({
-    extended: false,
-  })
-);
-app.use(bodyParser.json());
-
-console.log(__dirname);
-
 /*        CORS        */
 const cors = require("cors");
 app.use(cors());
@@ -38,14 +26,12 @@ app.get("/", function (req, res) {
   // res.sendFile(path.resolve("src/client/views/index.html"));
 });
 
-app.get("/scan/*", async (req, res) => {
+app.get("/scan/:url", async (req, res) => {
   try {
-    const url = req.params[0];
+    const url = req.params.url;
     apiURL = "https://api.meaningcloud.com/sentiment-2.1";
     apiKey = process.env.API_KEY;
-    const apiResponse = await axios.get(
-      `${apiURL}?key=${apiKey}&url=${url}&lang=en`
-    );
+    const apiResponse = await axios.get(`${apiURL}?key=${apiKey}&url=${url}&lang=en`);
 
     const { agreement, subjectivity, confidence, irony } = apiResponse.data;
     res.send({
