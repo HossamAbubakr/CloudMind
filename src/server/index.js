@@ -6,7 +6,6 @@ var path = require("path");
 /*        EXPRESS        */
 const express = require("express");
 const app = express();
-const mockAPIResponse = require("./mockAPI.js");
 /*        STATIC FOLDER        */
 app.use(express.static("dist"));
 /*        CORS        */
