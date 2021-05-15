@@ -24,7 +24,6 @@ app.get("/scan/:url", async (req, res) => {
     apiURL = "https://api.meaningcloud.com/sentiment-2.1";
     apiKey = process.env.API_KEY;
     const apiResponse = await axios.get(`${apiURL}?key=${apiKey}&url=${url}&lang=en`);
-
     const { agreement, subjectivity, confidence, irony } = apiResponse.data;
     res.send({ agreement, subjectivity, confidence, irony });
   } catch (err) {
