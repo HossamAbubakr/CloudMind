@@ -1,29 +1,22 @@
 /*        DOTENV        */
 const dotenv = require("dotenv");
 dotenv.config();
-
 /*        PATH MODULE        */
 var path = require("path");
-
 /*        EXPRESS        */
 const express = require("express");
 const app = express();
 const mockAPIResponse = require("./mockAPI.js");
-
 /*        STATIC FOLDER        */
 app.use(express.static("dist"));
-
 /*        CORS        */
 const cors = require("cors");
 app.use(cors());
-
 /*        AXIOS        */
 const axios = require("axios");
-
 /*        END POINTS        */
 app.get("/", function (req, res) {
   res.sendFile("dist/index.html");
-  // res.sendFile(path.resolve("src/client/views/index.html"));
 });
 
 app.get("/scan/:url", async (req, res) => {
@@ -34,12 +27,7 @@ app.get("/scan/:url", async (req, res) => {
     const apiResponse = await axios.get(`${apiURL}?key=${apiKey}&url=${url}&lang=en`);
 
     const { agreement, subjectivity, confidence, irony } = apiResponse.data;
-    res.send({
-      agreement,
-      subjectivity,
-      confidence,
-      irony,
-    });
+    res.send({ agreement, subjectivity, confidence, irony });
   } catch (err) {
     console.log(err);
     res.status(500).send("Ha..This shouldn't be happening..." + err);
