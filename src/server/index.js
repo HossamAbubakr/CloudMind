@@ -18,12 +18,17 @@ app.get("/", function (req, res) {
   res.sendFile("dist/index.html");
 });
 
-app.get("/scan/:url", async (req, res) => {
+app.get("/scan/*", async (req, res) => {
   try {
-    const url = req.params.url;
+    // if a named param is used then the url would have to be encoded
+    const url = req.params[0];
+    // API endpoint
     apiURL = "https://api.meaningcloud.com/sentiment-2.1";
+    // load the API key from the env file 
     apiKey = process.env.API_KEY;
+    // make a get request to the API endpoint
     const apiResponse = await axios.get(`${apiURL}?key=${apiKey}&url=${url}&lang=en`);
+    // get the results and send it back
     const { agreement, subjectivity, confidence, irony } = apiResponse.data;
     res.send({ agreement, subjectivity, confidence, irony });
   } catch (err) {
