@@ -11,6 +11,8 @@ async function handleSubmit(event) {
       let submitBtn = document.getElementById("submitBtn");
       // Get a reference to the logger
       let logger = document.getElementById("logger");
+      // Make sure the logger is visible
+      logger.style.visibility = 'visible';
       // Log the action
       console.log("::: Form Submitted :::");
       // Disable the button while the request is being made to prevent repeated actions
@@ -21,13 +23,14 @@ async function handleSubmit(event) {
       const apiCall = await fetch(`http://localhost:8081/scan/${formText}`);
       const apiResponse = await apiCall.json();
       // Load the results element with the data from the backend
-      document.getElementById("results").innerHTML = `<table>
-      <tr><td>Sentiment</td><td>Result</td></tr>
-      <tr><td>Agreement:</td><td>${apiResponse.agreement.toLowerCase()}</td></tr>
-      <tr><td>Subjectivity:</td><td>${apiResponse.subjectivity.toLowerCase()}</td></tr>
-      <tr><td>Confidence:</td><td>${apiResponse.confidence}</td></tr>
-      <tr><td>Irony:</td><td>${apiResponse.irony.toLowerCase()}</td></tr>
-      </table>`;
+      document.getElementById("td-agreement").innerHTML = apiResponse.agreement.toLowerCase()
+      document.getElementById("td-subjectivity").innerHTML = apiResponse.subjectivity.toLowerCase();
+      document.getElementById("td-confidence").innerHTML = apiResponse.confidence;
+      document.getElementById("td-irony").innerHTML = apiResponse.irony.toLowerCase();
+      // Hide Logger
+      logger.style.visibility = 'hidden';
+      // Reveal Table
+      document.getElementById("sentiment-table").style.visibility = 'visible';
       // Enable the submit button
       submitBtn.disabled = false;
     } catch (err) {
@@ -35,6 +38,8 @@ async function handleSubmit(event) {
       submitBtn.disabled = false;
       // Log the error
       console.log(err.message);
+      // Make sure the logger is visible
+      logger.style.visibility = 'visible';
       // Update Logger
       logger.innerText = "Error...";
     }
