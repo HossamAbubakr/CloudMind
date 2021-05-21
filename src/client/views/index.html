@@ -1,40 +1,40 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
-
-<head>
-    <meta charset="utf-8">
-    <link rel="icon" href="assets/images/favicon.png" type="image/png" sizes="16x16">
-    <title>Cloud Mind</title>
-</head>
-
-<body>
-    <header>
-        <div class="app-head">
-            <img src="assets/images/logo.png" alt="logo">
-        </div>
-    </header>
-    <main>
-        <section>
-            <form class="" onsubmit="return handleSubmit(event)">
-                <img id="robot" src="assets/images/robot.gif" alt="robot">
-                <input id="url" type="text" name="input" value="" placeholder="URL">
-                <input id="submitBtn" type="submit" name="" value="Submit Link"
-                    onclick="return Client.handleSubmit(event)" onsubmit="return handleSubmit(event)">
-            </form>
-        </section>
-
-        <section>
-            <strong>Neural Network Analysis Report:</strong>
-            <div id="results">
-                <p id="logger">Waiting for input...</p>
+    <head>
+        <meta charset="utf-8">
+        <link rel="icon" href="assets/images/favicon.png" type="image/png" sizes="16x16">
+        <title>Cloud Mind</title>
+    </head>
+    <body>
+        <header>
+            <div class="app-head">
+                <img src="assets/images/logo.png" alt="logo">
             </div>
-        </section>
-    </main>
-
-    <footer>
-        <p>Cloud Mind Is Powered By MeaningCloud™</p>
-    </footer>
-
-</body>
-
+        </header>
+        <main>
+            <section>
+                <form>
+                    <img id="robot" src="assets/images/robot.gif" alt="robot">
+                    <input id="url" type="text" name="input" value="" placeholder="URL">
+                    <input id="submitBtn" type="submit" name="" value="Submit Link" onclick="return Client.handleSubmit(event)">
+                </form>
+            </section>
+            <section>
+                <strong>Neural Network Analysis Report:</strong>
+                <div id="results">
+                    <p id="logger">Waiting for input...</p>
+                    <table id="sentiment-table">
+                        <tr><td>Sentiment</td><td>Result</td></tr>
+                        <tr><td>Agreement:</td><td id="td-agreement"></td></tr>
+                        <tr><td>Subjectivity:</td><td id="td-subjectivity"></td></tr>
+                        <tr><td>Confidence:</td><td id="td-confidence"></td></tr>
+                        <tr><td>Irony:</td><td id="td-irony"></td></tr>
+                    </table>
+                </div>
+            </section>
+        </main>
+        <footer>
+            <p>Cloud Mind Is Powered By MeaningCloud™</p>
+        </footer>
+    </body>
 </html>
